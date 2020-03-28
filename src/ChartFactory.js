@@ -42,10 +42,10 @@ const colors = { active: activeColor, confirmed: confirmedColor, recovered: reco
 export const init = () => {
 	container = am4core.create("chart", am4core.Container);
 	container.width = am4core.percent(100);
-	container.height = am4core.percent(100);
+	container.height = am4core.percent(80);
 	chart = container.createChild(am4maps.MapChart);
 
-	chart.height = am4core.percent(70);
+	chart.height = am4core.percent(90);
 	chart.projection = new am4maps.projections.Miller();
 	chart.panBehavior = "move";
 
@@ -410,6 +410,7 @@ const createBottomLineGraph = () => {
 	lineChart.zoomOutButton.disabled = true;
 	lineChart.paddingBottom = 5;
 	lineChart.paddingTop = 3;
+	lineChart.marginBottom = 12;
 
 	lineChart.data = JSON.parse(JSON.stringify(covid_nigeria_total_timeline));
 

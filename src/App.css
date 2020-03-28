@@ -30,13 +30,14 @@
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
+  height: 70px;
   padding: 0 .5rem;
 }
 
 .App-header-content {
   display: flex;
-  color: black
+  color: black;
+  align-items: center;
 }
 
 .App-header-github {
