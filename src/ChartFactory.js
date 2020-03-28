@@ -59,7 +59,7 @@ export const init = () => {
 	prepareMapLayout();
 	setupButtonControlsAndStateLabels(container);
 	createBottomLineGraph();
-	setDataCategory("active");
+	setDataCategory("confirmed");
 
 	setTimeout(updateSeriesTooltip, 3000);
 
@@ -418,7 +418,8 @@ const createBottomLineGraph = () => {
 	dateAxis.renderer.minGridDistance = 50;
 	dateAxis.renderer.grid.template.stroke = am4core.color("#000000");
 	dateAxis.renderer.grid.template.strokeOpacity = 0.25;
-	dateAxis.min = earliestDate.getTime() + am4core.time.getDuration("day", 3);
+
+	//dateAxis.min = earliestDate.getTime() + am4core.time.getDuration("day", 3);
 	dateAxis.max = lastDate.getTime() + am4core.time.getDuration("day", 3);
 	dateAxis.tooltip.label.fontSize = "0.8em";
 	dateAxis.tooltip.background.fill = activeColor;
@@ -574,7 +575,6 @@ const addButton = (name, color) => {
 	circleActiveState.properties.fillOpacity = 0.5;
 
 	button.events.on("hit", handleButtonClick);
-
 	return button;
 }
 
