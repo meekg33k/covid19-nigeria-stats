@@ -482,8 +482,8 @@ const createBottomLineGraph = () => {
 	label.horizontalCenter = "right";
 	label.verticalCenter = "bottom";
 
-	const activeButton = addButton("active", activeColor);
 	const confirmedButton = addButton("confirmed", confirmedColor);
+	const activeButton = addButton("active", activeColor);
 	const recoveredButton = addButton("recovered", recoveredColor);
 	const deathsButton = addButton("deaths", deathsColor);
 
