@@ -1,14 +1,17 @@
-/* global am4core */
-/* global am4charts */
-/* global am4maps */
-/* global am4geodata_worldHigh */
-/* global am4geodata_nigeriaHigh */
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import * as am4maps from "@amcharts/amcharts4/maps";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 
 import { covid_nigeria_state_timeline } from "./data/StateTimeline";
 import { covid_nigeria_total_timeline } from "./data/TotalTimeline";
 import { ID_TO_STATE_MAP } from "./data/IdToStateMap";
 import CovidIcon from "./images/covid-19.png";
+import nigeriaGeoData from "./geodata/nigeriaHigh";
+import worldGeoData from "./geodata/worldHigh";
 import { capitalizeFirstLetter } from "./Utils";
+
 
 let buttons;
 let buttonsContainer;
@@ -33,13 +36,16 @@ const recoveredColor = am4core.color("#45d21a");
 const deathsColor = am4core.color("#d21a1a");
 const buttonStrokeColor = am4core.color("#ffffff");
 
-const earliestDate = new Date(covid_nigeria_state_timeline[0].date);
 const lastDate = new Date(covid_nigeria_state_timeline[covid_nigeria_state_timeline.length - 1].date);
+console.log('ast', lastDate, covid_nigeria_state_timeline[covid_nigeria_state_timeline.length - 1].date)
 let currentDate = lastDate;
 let currentIndex;
 const colors = { active: activeColor, confirmed: confirmedColor, recovered: recoveredColor, deaths: deathsColor };
 
 export const init = () => {
+	am4core.useTheme(am4themes_animated);
+	am4core.useTheme(am4themes_dark);
+
 	container = am4core.create("chart", am4core.Container);
 	container.width = am4core.percent(100);
 	container.height = am4core.percent(80);
@@ -108,7 +114,7 @@ const prepareStateTimelineData = () => {
 
 const prepareMapLayout = () => {
 	//Polygon country series layout and data
-	chart.geodata = am4geodata_worldHigh;
+	chart.geodata = worldGeoData;
 	let countrySeries = chart.series.push(new am4maps.MapPolygonSeries());
 	countrySeries.include = ["NG"];
 	countrySeries.useGeodata = true;
@@ -123,7 +129,7 @@ const prepareMapLayout = () => {
 	stateSeries.dataFields.value = "confirmed";
 	stateSeries.dataFields.id = "id";
 	stateSeries.calculateVisualCenter = true;
-	stateSeries.geodata = am4geodata_nigeriaHigh;
+	stateSeries.geodata = nigeriaGeoData;
 
 	// Polygon state series layout
 	let statePolygonTemplate = stateSeries.mapPolygons.template;
@@ -420,7 +426,7 @@ const createBottomLineGraph = () => {
 	dateAxis.renderer.grid.template.strokeOpacity = 0.25;
 
 	//dateAxis.min = earliestDate.getTime() + am4core.time.getDuration("day", 3);
-	dateAxis.max = lastDate.getTime() + am4core.time.getDuration("day", 3);
+	dateAxis.max = lastDate.getTime() + am4core.time.getDuration("day", 2);
 	dateAxis.tooltip.label.fontSize = "0.8em";
 	dateAxis.tooltip.background.fill = activeColor;
 	dateAxis.tooltip.background.stroke = activeColor;
@@ -487,20 +493,20 @@ const createBottomLineGraph = () => {
 	const recoveredButton = addButton("recovered", recoveredColor);
 	const deathsButton = addButton("deaths", deathsColor);
 
-	buttons = { active: activeButton, confirmed: confirmedButton, recovered: recoveredButton, deaths: deathsButton };
+	buttons = { confirmed: confirmedButton, active: activeButton, recovered: recoveredButton, deaths: deathsButton };
 }
 
 
 const createLineSeries = () => {
-	const activeSeries = addSeries("active", activeColor);
-	activeSeries.tooltip.disabled = true;
-	activeSeries.hidden = false;
-
 	const confirmedSeries = addSeries("confirmed", confirmedColor);
+	confirmedSeries.tooltip.disabled = true;
+	confirmedSeries.hidden = false;
+
+	const activeSeries = addSeries("active", activeColor);
 	const recoveredSeries = addSeries("recovered", recoveredColor);
 	const deathsSeries = addSeries("deaths", deathsColor);
 
-	const series = { active: activeSeries, confirmed: confirmedSeries, recovered: recoveredSeries, deaths: deathsSeries };
+	const series = { confirmed: confirmedSeries, active: activeSeries, recovered: recoveredSeries, deaths: deathsSeries };
 	return series;
 }
 
