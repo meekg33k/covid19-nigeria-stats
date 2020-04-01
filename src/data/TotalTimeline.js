@@ -96,6 +96,9 @@ export const covid_nigeria_total_timeline = [
 		"date": "2020-03-29", "confirmed": 111, "deaths": 1, "recovered": 3
 	},
 	{
-		"date": "2020-03-29", "confirmed": 131, "deaths": 2, "recovered": 3
+		"date": "2020-03-30", "confirmed": 131, "deaths": 2, "recovered": 3
+	},
+	{
+		"date": "2020-03-31", "confirmed": 139, "deaths": 2, "recovered": 9
 	},
 ]
