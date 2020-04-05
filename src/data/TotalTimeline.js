@@ -104,4 +104,13 @@ export const covid_nigeria_total_timeline = [
 	{
 		"date": "2020-04-01", "confirmed": 174, "deaths": 2, "recovered": 9
 	},
+	{
+		"date": "2020-04-02", "confirmed": 174, "deaths": 2, "recovered": 9
+	},
+	// {
+	// 	"date": "2020-04-03", "confirmed": 174, "deaths": 2, "recovered": 9
+	// },
+	// {
+	// 	"date": "2020-04-04", "confirmed": 174, "deaths": 2, "recovered": 9
+	// },
 ]
