@@ -105,12 +105,18 @@ export const covid_nigeria_total_timeline = [
 		"date": "2020-04-01", "confirmed": 174, "deaths": 2, "recovered": 9
 	},
 	{
-		"date": "2020-04-02", "confirmed": 174, "deaths": 2, "recovered": 9
+		"date": "2020-04-02", "confirmed": 184, "deaths": 2, "recovered": 20
 	},
-	// {
-	// 	"date": "2020-04-03", "confirmed": 174, "deaths": 2, "recovered": 9
-	// },
-	// {
-	// 	"date": "2020-04-04", "confirmed": 174, "deaths": 2, "recovered": 9
-	// },
+	{
+		"date": "2020-04-03", "confirmed": 209, "deaths": 4, "recovered": 25
+	},
+	{
+		"date": "2020-04-04", "confirmed": 214, "deaths": 4, "recovered": 25
+	},
+	{
+		"date": "2020-04-05", "confirmed": 232, "deaths": 5, "recovered": 33
+	},
+	{
+		"date": "2020-04-06", "confirmed": 238, "deaths": 5, "recovered": 35
+	},
 ]
