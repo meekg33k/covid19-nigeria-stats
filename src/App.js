@@ -9,7 +9,7 @@ class App extends React.Component {
   }
 
   componentDidMount = async () => {
-    const res = await fetch('http://covid-19-nigeria-data.herokuapp.com');
+    const res = await fetch('https://covid-19-nigeria-data.herokuapp.com');
     const data = await res.json();
     if (data) {
       window.data = data;
