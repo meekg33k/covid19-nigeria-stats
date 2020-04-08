@@ -3,15 +3,11 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
-
-import { covid_nigeria_state_timeline } from "./data/StateTimeline";
-import { covid_nigeria_total_timeline } from "./data/TotalTimeline";
 import { ID_TO_STATE_MAP } from "./data/IdToStateMap";
 import CovidIcon from "./images/covid-19.png";
 import nigeriaGeoData from "./geodata/nigeriaHigh";
 import worldGeoData from "./geodata/worldHigh";
 import { capitalizeFirstLetter } from "./Utils";
-
 
 let buttons;
 let buttonsContainer;
@@ -36,9 +32,10 @@ const recoveredColor = am4core.color("#45d21a");
 const deathsColor = am4core.color("#d21a1a");
 const buttonStrokeColor = am4core.color("#ffffff");
 
-const lastDate = new Date(covid_nigeria_state_timeline[covid_nigeria_state_timeline.length - 1].date);
-console.log('ast', lastDate, covid_nigeria_state_timeline[covid_nigeria_state_timeline.length - 1].date)
-let currentDate = lastDate;
+let covid_nigeria_state_timeline;
+let covid_nigeria_total_timeline;
+let lastDate;
+let currentDate;
 let currentIndex;
 const colors = { active: activeColor, confirmed: confirmedColor, recovered: recoveredColor, deaths: deathsColor };
 
@@ -60,6 +57,11 @@ export const init = () => {
 	chart.zoomControl.marginRight = 5;
 	chart.zoomControl.valign = "middle";
 	chart.zoomControl.slider.height = 100;
+
+	covid_nigeria_state_timeline = window.data.states;
+	covid_nigeria_total_timeline = window.data.total;
+	lastDate = new Date(covid_nigeria_state_timeline[covid_nigeria_state_timeline.length - 1].date);
+	currentDate = lastDate;
 
 	prepareMapData();
 	prepareMapLayout();
